@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Me</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #FAF8F4;
+      --ink:   #1C1C1E;
+      --muted: #6B6B6B;
+      --accent: #C2714F;
+      --border: #E0DDD8;
+      --card:  #FFFFFF;
+    }
+
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    /* ── NAV ── */
+    nav {
+      padding: 1.2rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      background: var(--cream);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--ink);
+      letter-spacing: 0.02em;
+    }
+    nav ul { list-style: none; display: flex; gap: 2rem; }
+    nav ul li a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+    nav ul li a:hover,
+    nav ul li a.active { color: var(--accent); }
+
+    /* ── PHOTO SLIDER ── */
+    .slider-section {
+      position: relative;
+      width: 100%;
+      height: 480px;
+      overflow: hidden;
+      background: #1C1C1E;
+    }
+    .slides {
+      display: flex;
+      width: 500%;
+      height: 100%;
+      transition: transform 0.6s cubic-bezier(.77,0,.18,1);
+    }
+    .slide {
+      width: 20%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 0.05em;
+      position: relative;
+    }
+    /* Placeholder gradient backgrounds for each slide */
+    .slide:nth-child(1) { background: linear-gradient(135deg, #2C2C3E 0%, #4A3F6B 100%); }
+    .slide:nth-child(2) { background: linear-gradient(135deg, #3A2C2C 0%, #7A4040 100%); }
+    .slide:nth-child(3) { background: linear-gradient(135deg, #1E3A2C 0%, #2E6B4A 100%); }
+    .slide:nth-child(4) { background: linear-gradient(135deg, #2C3A3A 0%, #3A6060 100%); }
+    .slide:nth-child(5) { background: linear-gradient(135deg, #3A3A1E 0%, #6B6020 100%); }
+
+    /* Add a real image by replacing the placeholder below */
+    /* .slide:nth-child(1) { background-image: url('photo1.jpg'); background-size: cover; } */
+
+    .slide-label {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* Dots */
+    .slider-dots {
+      position: absolute;
+      bottom: 1.25rem;
+      right: 2rem;
+      display: flex;
+      gap: 0.5rem;
+    }
+    .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+      border: none;
+    }
+    .dot.active { background: var(--accent); transform: scale(1.3); }
+
+    /* Arrows */
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #fff;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.1rem;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+      z-index: 10;
+    }
+    .arrow:hover { background: rgba(255,255,255,0.18); }
+    .arrow.prev { left: 1.5rem; }
+    .arrow.next { right: 1.5rem; }
+
+    /* ── SHARED SECTION STYLES ── */
+    section { padding: 5rem 3rem; }
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--ink);
+    }
+
+    /* ── ABOUT ME ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 4rem;
+      align-items: start;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .about-left { padding-top: 0.5rem; }
+    .about-left h2 { margin-bottom: 1rem; }
+    .about-left p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 1.2rem;
+    }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+    .tag {
+      padding: 0.3rem 0.85rem;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-size: 0.78rem;
+      color: var(--muted);
+      letter-spacing: 0.03em;
+    }
+    .about-right {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2.5rem;
+    }
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.9rem;
+    }
+    .info-row:last-child { border-bottom: none; }
+    .info-row span:first-child { color: var(--muted); font-weight: 400; }
+    .info-row span:last-child  { color: var(--ink);  font-weight: 500; }
+
+    /* ── ACHIEVEMENT ── */
+    .achievement-section { background: var(--ink); color: #fff; }
+    .achievement-section .section-label { color: var(--accent); }
+    .achievement-section h2 { color: #fff; }
+    .achievement-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      max-width: 1100px;
+      margin: 2.5rem auto 0;
+    }
+    .ach-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: background 0.25s, transform 0.25s;
+    }
+    .ach-card:hover { background: rgba(255,255,255,0.09); transform: translateY(-4px); }
+    .ach-photo {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+    .ach-photo-placeholder {
+      width: 100%;
+      height: 220px;
+      background: linear-gradient(135deg, rgba(194,113,79,0.3) 0%, rgba(255,255,255,0.05) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+    }
+    .ach-body { padding: 1.8rem; }
+    .ach-year {
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+    .ach-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: #fff;
+    }
+    .ach-desc { font-size: 0.88rem; color: rgba(255,255,255,0.5); line-height: 1.6; }
+
+    /* ── VIDEO ── */
+    .video-section { background: var(--cream); }
+    .video-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .video-inner h2 { margin-bottom: 0.5rem; }
+    .video-inner p { color: var(--muted); margin-bottom: 2.5rem; font-size: 0.95rem; }
+    .video-frame {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: #1C1C1E;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .video-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      color: rgba(255,255,255,0.4);
+    }
+    .play-btn {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: none;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: transform 0.2s, background 0.2s;
+    }
+    .play-btn:hover { transform: scale(1.08); background: #d4815f; }
+    .play-btn svg { fill: #fff; width: 22px; height: 22px; margin-left: 3px; }
+    .video-placeholder p {
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+    }
+    /* To embed a real YouTube video, replace .video-frame with:
+       <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" ...></iframe> */
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 2rem 3rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      nav ul { gap: 1rem; }
+      section { padding: 3.5rem 1.5rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .achievement-grid { grid-template-columns: 1fr; }
+      .slider-section { height: 300px; }
+      h2 { font-size: 1.9rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Your Name</div>
+  <ul>
+    <li><a href="#" class="active">About</a></li>
+  </ul>
+</nav>
+
+<!-- PHOTO SLIDER (5 slides) -->
+<div class="slider-section">
+  <div class="slides" id="slides">
+    <div class="slide"><img src="picture/me1.jpeg" alt="Photo 1"></div>
+    <div class="slide"><img src="picture/me7.jpeg" alt="Photo 2"></div>
+    <div class="slide"><img src="picture/me6.jpeg" alt="Photo 3"></div>
+    <div class="slide"><img src="picture/me4.jpeg" alt="Photo 4"></div>
+    <div class="slide"><img src="picture/me5.jpeg" alt="Photo 5"></div>
+  </div>
+
+  <button class="arrow prev" onclick="move(-1)">&#8592;</button>
+  <button class="arrow next" onclick="move(1)">&#8594;</button>
+
+  <div class="slider-dots" id="dots">
+    <button class="dot active" onclick="goTo(0)"></button>
+    <button class="dot" onclick="goTo(1)"></button>
+    <button class="dot" onclick="goTo(2)"></button>
+    <button class="dot" onclick="goTo(3)"></button>
+    <button class="dot" onclick="goTo(4)"></button>
+  </div>
+</div>
+
+<!-- ABOUT ME -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-left">
+      <p class="section-label">Who I am</p>
+      <h2>About Me</h2>
+      <p>Hi! I'm Irfan, a passionate student who love nature. I love to communicate with people and learn their background.</p>
+      <p>I believe in Islam which is the only true religion. When I'm not working, you'll find me sleeping.</p>
+      <div class="tag-row">
+        <span class="tag">Creative</span>
+        <span class="tag">Detail-oriented</span>
+        <span class="tag">Problem solver</span>
+        <span class="tag">Team player</span>
+      </div>
+    </div>
+    <div class="about-right">
+      <div class="info-row"><span>Full Name</span><span>MUHAMMAD IRFAN BIN HASLAN</span></div>
+      <div class="info-row"><span>Date of Birth</span><span>13 / 11 / 2006</span></div>
+      <div class="info-row"><span>Location</span><span>KL, SELANGOR</span></div>
+      <div class="info-row"><span>Education</span><span>UiTM CAWANGAN MERBOK</span></div>
+      <div class="info-row"><span>Field</span><span>LIBRARY INFORMATIC</span></div>
+      <div class="info-row"><span>Email</span><span>irfannakki1@gmail.com</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENT -->
+<section class="achievement-section" id="achievement">
+  <div style="max-width:1100px; margin:0 auto;">
+    <p class="section-label">What I've done</p>
+    <h2>Achievement</h2>
+  </div>
+  <div class="achievement-grid">
+
+    <div class="ach-card">
+      <img class="ach-photo" src="picture/achievement1.jpeg" alt="Achievement 1 photo">
+      <div class="ach-photo-placeholder">Your Photo Here</div>
+      <div class="ach-body">
+        <p class="ach-year">2023</p>
+        <p class="ach-title">MODEL PERFECT</p>
+        <p class="ach-desc"> I got this achievement after five years of service at my school library
+          and it was one of the best achievement i ever had in my school days.</p>
+      </div>
+    </div>
+
+    <div class="ach-card">
+      <img class="ach-photo" src="picture/achievement2.jpg" alt="Achievement 2 photo">
+      <div class="ach-photo-placeholder">Your Photo Here</div>
+      <div class="ach-body">
+        <p class="ach-year">2023</p>
+        <p class="ach-title">SPM ACHIEVEMENT</p>
+        <p class="ach-desc"> For me this achievement is very hard to forget since in my school days
+          i never got more than five A's in my examination. My family proud of me.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- VIDEO -->
+<section class="video-section" id="video">
+  <div class="video-inner">
+    <p class="section-label">Watch</p>
+    <h2>My Video</h2>
+    <p>A short clip or introduction — let them hear it from you directly.</p>
+    <div class="video-frame">
+      <div class="video-placeholder">
+        <button class="play-btn">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+        </button>
+        <!-- Replace this placeholder with a real video:
+             Option A (YouTube): <iframe width="100%" height="100%" src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allowfullscreen></iframe>
+             Option B (local file): <video width="100%" controls><source src="myvideo.mp4" type="video/mp4"></video>
+        -->
+        <p>Replace with your video embed</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  &copy; 2026 Your Name &mdash; All rights reserved.
+</footer>
+
+<script>
+  let current = 0;
+  const total = 5;
+
+  function update() {
+    document.getElementById('slides').style.transform = `translateX(-${current * 20}%)`;
+    document.querySelectorAll('.dot').forEach((d, i) => {
+      d.classList.toggle('active', i === current);
+    });
+  }
+
+  function move(dir) {
+    current = (current + dir + total) % total;
+    update();
+  }
+
+  function goTo(n) {
+    current = n;
+    update();
+  }
+
+  // Auto-advance every 4 seconds
+  setInterval(() => move(1), 4000);
+</script>
+
+</body>
+</html>
