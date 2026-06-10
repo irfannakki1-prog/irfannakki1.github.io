@@ -199,6 +199,29 @@
     .arrow.prev { left: 1.5rem; }
     .arrow.next { right: 1.5rem; }
 
+    /* ── CORNER BRACKET FRAME ── */
+.slider-frame {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 20;
+}
+.slider-frame::before,
+.slider-frame::after,
+.slider-frame .br,
+.slider-frame .bl {
+  content: '';
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  border-color: #C2714F;
+  border-style: solid;
+}
+.slider-frame::before { top: 16px; left: 16px; border-width: 3px 0 0 3px; }
+.slider-frame::after  { top: 16px; right: 16px; border-width: 3px 3px 0 0; }
+.slider-frame .bl     { bottom: 16px; left: 16px; border-width: 0 0 3px 3px; }
+.slider-frame .br     { bottom: 16px; right: 16px; border-width: 0 3px 3px 0; }
+
     /* ── SHARED SECTION STYLES ── */
     section { padding: 5rem 3rem; }
     .section-label {
@@ -406,6 +429,9 @@
 
 <!-- PHOTO SLIDER (5 slides) -->
 <div class="slider-section">
+
+    <div class="slider-frame"><span class="bl"></span><span class="br"></span></div>
+
   <div class="slides" id="slides">
     <div class="slide">
       <div class="slide-bg" style="background-image: url('picture/me1.jpeg')"></div>
