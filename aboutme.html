@@ -83,11 +83,17 @@
       position: relative;
     }
     /* Placeholder gradient backgrounds for each slide */
-    .slide img {
-  width: 100%;
+    .slide {
+  display: flex;
+  align-items: stretch;
+}
+
+.slide img {
+  width: auto;
+  max-width: 70%;
   height: 100%;
   object-fit: contain;
-  display: block;
+  flex-shrink: 0;
   position: relative;
   z-index: 1;
 }
@@ -101,6 +107,43 @@
   filter: blur(18px) brightness(0.45);
   transform: scale(1.1);
   z-index: 0;
+}
+
+    .slide-caption {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2.5rem 2.5rem 2.5rem 2rem;
+  background: rgba(28, 28, 30, 0.75);
+  backdrop-filter: blur(6px);
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.slide-caption-label {
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.6rem;
+}
+
+.slide-caption-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.25;
+  margin-bottom: 0.85rem;
+}
+
+.slide-caption-desc {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.7;
 }
 
     /* Add a real image by replacing the placeholder below */
@@ -328,15 +371,25 @@
     }
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 768px) {
-      nav { padding: 1rem 1.5rem; }
-      nav ul { gap: 1rem; }
-      section { padding: 3.5rem 1.5rem; }
-      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
-      .achievement-grid { grid-template-columns: 1fr; }
-      .slider-section { height: 300px; }
-      h2 { font-size: 1.9rem; }
-    }
+   @media (max-width: 768px) {
+  nav { padding: 1rem 1.5rem; }
+  nav ul { gap: 1rem; }
+  section { padding: 3.5rem 1.5rem; }
+  .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .achievement-grid { grid-template-columns: 1fr; }
+  .slider-section { height: 300px; }
+  h2 { font-size: 1.9rem; }
+
+  .slide { flex-direction: column; }
+  .slide img { max-width: 100%; height: 60%; }
+  .slide-caption {
+    height: 40%;
+    border-left: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 1.2rem 1.5rem;
+  }
+  .slide-caption-title { font-size: 1.1rem; }
+}
   </style>
 </head>
 <body>
@@ -354,27 +407,52 @@
 <!-- PHOTO SLIDER (5 slides) -->
 <div class="slider-section">
   <div class="slides" id="slides">
-  <div class="slide">
-    <div class="slide-bg" style="background-image: url('picture/me1.jpeg')"></div>
-    <img src="picture/me1.jpeg" alt="Photo 1">
+    <div class="slide">
+      <div class="slide-bg" style="background-image: url('picture/me1.jpeg')"></div>
+      <img src="picture/me1.jpeg" alt="Photo 1">
+      <div class="slide-caption">
+        <p class="slide-caption-label">Photo 01</p>
+        <h3 class="slide-caption-title">Your Title Here</h3>
+        <p class="slide-caption-desc">Write a short description or story about this photo. Where was it taken? What does it mean to you?</p>
+      </div>
+    </div>
+    <div class="slide">
+      <div class="slide-bg" style="background-image: url('picture/me7.jpeg')"></div>
+      <img src="picture/me7.jpeg" alt="Photo 2">
+      <div class="slide-caption">
+        <p class="slide-caption-label">Photo 02</p>
+        <h3 class="slide-caption-title">Your Title Here</h3>
+        <p class="slide-caption-desc">Write a short description or story about this photo. Where was it taken? What does it mean to you?</p>
+      </div>
+    </div>
+    <div class="slide">
+      <div class="slide-bg" style="background-image: url('picture/me6.jpeg')"></div>
+      <img src="picture/me6.jpeg" alt="Photo 3">
+      <div class="slide-caption">
+        <p class="slide-caption-label">Photo 03</p>
+        <h3 class="slide-caption-title">Your Title Here</h3>
+        <p class="slide-caption-desc">Write a short description or story about this photo. Where was it taken? What does it mean to you?</p>
+      </div>
+    </div>
+    <div class="slide">
+      <div class="slide-bg" style="background-image: url('picture/me4.jpeg')"></div>
+      <img src="picture/me4.jpeg" alt="Photo 4">
+      <div class="slide-caption">
+        <p class="slide-caption-label">Photo 04</p>
+        <h3 class="slide-caption-title">Your Title Here</h3>
+        <p class="slide-caption-desc">Write a short description or story about this photo. Where was it taken? What does it mean to you?</p>
+      </div>
+    </div>
+    <div class="slide">
+      <div class="slide-bg" style="background-image: url('picture/me8.jpeg')"></div>
+      <img src="picture/me8.jpeg" alt="Photo 5">
+      <div class="slide-caption">
+        <p class="slide-caption-label">Photo 05</p>
+        <h3 class="slide-caption-title">Your Title Here</h3>
+        <p class="slide-caption-desc">Write a short description or story about this photo. Where was it taken? What does it mean to you?</p>
+      </div>
+    </div>
   </div>
-  <div class="slide">
-    <div class="slide-bg" style="background-image: url('picture/me7.jpeg')"></div>
-    <img src="picture/me7.jpeg" alt="Photo 2">
-  </div>
-  <div class="slide">
-    <div class="slide-bg" style="background-image: url('picture/me6.jpeg')"></div>
-    <img src="picture/me6.jpeg" alt="Photo 3">
-  </div>
-  <div class="slide">
-    <div class="slide-bg" style="background-image: url('picture/me4.jpeg')"></div>
-    <img src="picture/me4.jpeg" alt="Photo 4">
-  </div>
-  <div class="slide">
-    <div class="slide-bg" style="background-image: url('picture/me8.jpeg')"></div>
-    <img src="picture/me8.jpeg" alt="Photo 5">
-  </div>
-</div>
 
   <button class="arrow prev" onclick="move(-1)">&#8592;</button>
   <button class="arrow next" onclick="move(1)">&#8594;</button>
@@ -387,7 +465,7 @@
     <button class="dot" onclick="goTo(4)"></button>
   </div>
 </div>
-
+  
 <!-- ABOUT ME -->
 <section id="about">
   <div class="about-grid">
