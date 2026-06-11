@@ -30,7 +30,7 @@
       margin: 0 auto;
     }
 
-    /* ── NAV ── */
+    /* NAV */
     nav {
       display: flex;
       justify-content: space-between;
@@ -81,77 +81,40 @@
       display: inline-block;
     }
 
-    /* ── SLIDER ── */
-    .slider-wrapper {
-      position: relative;
-      width: 100%;
+    /* ALBUM GRID */
+    .album-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
       border-radius: 14px;
       overflow: hidden;
       margin-bottom: 28px;
       box-shadow: 0 4px 18px rgba(0,0,0,0.12);
-      background: var(--bg-alt);
     }
 
-    .slides {
-      display: flex;
-      transition: transform 0.5s ease;
+    .album-grid .album-cell {
+      height: 200px;
+      overflow: hidden;
     }
 
-    .slide {
-      min-width: 100%;
-      height: 280px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.1rem;
-      color: var(--muted);
-      background: linear-gradient(135deg, var(--bg-alt), #e8d0bb);
-      position: relative;
+    .album-grid .album-cell.wide {
+      grid-column: span 2;
+      height: 200px;
     }
 
-    .slide img {
-      position: absolute;
+    .album-grid .album-cell img {
       width: 100%;
       height: 100%;
-      object-fit: contains;
-    }  
-
-    .slider-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(44,31,20,0.5);
-      color: #fff;
-      border: none;
-      border-radius: 50%;
-      width: 38px; height: 38px;
-      font-size: 1.2rem;
-      cursor: pointer;
-      z-index: 10;
-      display: flex; align-items: center; justify-content: center;
-      transition: background 0.2s;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.35s ease;
     }
-    .slider-btn:hover { background: rgba(44,31,20,0.85); }
-    .slider-btn.prev { left: 12px; }
-    .slider-btn.next { right: 12px; }
 
-    .dots {
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      padding: 12px 0 8px;
-      background: var(--bg-alt);
+    .album-grid .album-cell:hover img {
+      transform: scale(1.04);
     }
-    .dot {
-      width: 10px; height: 10px;
-      border-radius: 50%;
-      background: var(--border);
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    .dot.active { background: var(--accent); }
 
-    /* ── MY FAMILY BANNER ── */
+    /* MY FAMILY BANNER */
     .family-banner {
       text-align: center;
       margin-bottom: 36px;
@@ -172,7 +135,7 @@
       font-style: italic;
     }
 
-    /* ── GRID ROWS ── */
+    /* GRID ROWS */
     .card-row {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -180,7 +143,7 @@
       margin-bottom: 28px;
     }
 
-    /* ── PHOTO CARD ── */
+    /* PHOTO CARD */
     .card {
       border-radius: 14px;
       overflow: hidden;
@@ -212,22 +175,8 @@
     .card-photo img {
       position: absolute;
       width: 100%; height: 100%;
-      object-fit: cover;   
+      object-fit: cover;
     }
-    
-    .card-photo .upload-hint {
-      position: absolute;
-      bottom: 8px; right: 10px;
-      background: rgba(44,31,20,0.65);
-      color: #fff;
-      font-size: 0.7rem;
-      padding: 3px 9px;
-      border-radius: 20px;
-      opacity: 0;
-      transition: opacity 0.2s;
-      pointer-events: none;
-    }
-    .card:hover .card-photo .upload-hint { opacity: 1; }
 
     .card-label {
       padding: 10px 14px 12px;
@@ -240,7 +189,7 @@
       border-top: 1px solid var(--border);
     }
 
-    /* ── TEXT CARD ── */
+    /* TEXT CARD */
     .text-card {
       border-radius: 14px;
       background: var(--card);
@@ -267,7 +216,6 @@
       padding-bottom: 8px;
     }
 
-    /* Info list inside text card */
     .info-list {
       list-style: none;
       display: flex;
@@ -300,7 +248,6 @@
       text-align: right;
     }
 
-    /* Hidden file inputs */
     input[type="file"] { display: none; }
 
     @media (max-width: 600px) {
@@ -310,6 +257,7 @@
       .card-row .card:first-child,
       .card-row .text-card:first-child { grid-column: span 2; }
       .family-banner h2 { font-size: 1.9rem; }
+      .album-grid .album-cell { height: 140px; }
     }
   </style>
 </head>
@@ -327,18 +275,23 @@
 
   <h1>Family</h1>
 
-  <!-- PHOTO SLIDER -->
-  <div class="slider-wrapper">
-    <div class="slides" id="slides">
-      <div class="slide"><img src="picture/family5.jpeg" alt="Photo 0"></div>
-      <div class="slide"><img src="picture/family1.jpeg" alt="Photo 1"></div>
-      <div class="slide"><img src="picture/family2.jpeg" alt="Photo 2"></div>
-      <div class="slide"><img src="picture/family6.jpeg" alt="Photo 3"></div>
-      <div class="slide"><img src="picture/family3.jpeg" alt="Photo 4"></div>
+  <!-- PHOTO ALBUM GRID -->
+  <div class="album-grid">
+    <div class="album-cell">
+      <img src="picture/family3.jpeg" alt="Family Photo 1">
     </div>
-    <button class="slider-btn prev" onclick="moveSlide(-1)">&#8592;</button>
-    <button class="slider-btn next" onclick="moveSlide(1)">&#8594;</button>
-    <div class="dots" id="dots"></div>
+    <div class="album-cell">
+      <img src="picture/family1.jpeg" alt="Family Photo 2">
+    </div>
+    <div class="album-cell">
+      <img src="picture/family2.jpeg" alt="Family Photo 3">
+    </div>
+    <div class="album-cell">
+      <img src="picture/family6.jpeg" alt="Family Photo 4">
+    </div>
+    <div class="album-cell wide">
+      <img src="picture/family5.jpeg" alt="Family Photo 5">
+    </div>
   </div>
 
   <!-- MY FAMILY BANNER -->
@@ -348,10 +301,9 @@
 
   <!-- PARENTS ROW -->
   <div class="card-row">
-  <div class="card">
+    <div class="card">
       <div class="card-photo">
         <img src="picture/family4.jpeg" alt="Parents Photo">
-
       </div>
       <div class="card-label">Parents Photo</div>
     </div>
@@ -377,14 +329,13 @@
         <li><span class="label">Hobby</span><span class="value">WATCH TV</span></li>
       </ul>
     </div>
-
   </div>
 
   <!-- SIBLINGS ROW -->
   <div class="card-row">
-  <div class="card">
+    <div class="card">
       <div class="card-photo">
-        <img src="picture/family8.jpeg" alt="family photo">
+        <img src="picture/family8.jpeg" alt="Family Photo">
       </div>
       <div class="card-label">Family Photo</div>
     </div>
@@ -410,35 +361,7 @@
         <li><span class="label">Hobby</span><span class="value">PLAYING GAMES</span></li>
       </ul>
     </div>
-
   </div>
-
-
-  <script>
-    // ── SLIDER LOGIC ──
-    let current = 0;
-    const total = 5;
-    const slidesEl = document.getElementById('slides');
-    const dotsEl   = document.getElementById('dots');
-
-    for (let i = 0; i < total; i++) {
-      const d = document.createElement('div');
-      d.className = 'dot' + (i === 0 ? ' active' : '');
-      d.onclick = () => goTo(i);
-      dotsEl.appendChild(d);
-    }
-
-    function goTo(n) {
-      current = (n + total) % total;
-      slidesEl.style.transform = `translateX(-${current * 100}%)`;
-      document.querySelectorAll('.dot').forEach((d, i) =>
-        d.classList.toggle('active', i === current));
-    }
-
-    function moveSlide(dir) { goTo(current + dir); }
-    setInterval(() => moveSlide(1), 4000);
-
-  </script>
 
 </body>
 </html>
