@@ -1,6 +1,6 @@
 /* ============================================================
    style.css — Universal stylesheet for Irfan's Personal Website
-   Pages: index.html · aboutme.html · contact.html
+   Pages: index · aboutme · contact · family · favfood · komander · sport
    ============================================================ */
 
 /* ── RESET ── */
@@ -12,24 +12,24 @@
 
 /* ── DESIGN TOKENS ── */
 :root {
-  --bg:      #fdf6ee;
-  --bg-alt:  #f9ede0;
-  --ink:     #2c1f14;
-  --ink-dark: #1C1C1E;
-  --accent:  #b85c2a;
+  --bg:           #fdf6ee;
+  --bg-alt:       #f9ede0;
+  --ink:          #2c1f14;
+  --ink-dark:     #1C1C1E;
+  --accent:       #b85c2a;
   --accent-hover: #d4815f;
-  --muted:   #9e7f68;
-  --muted-alt: #6B6B6B;
-  --card:    #fff9f3;
-  --card-alt: #FFFFFF;
-  --border:  #e8d8c8;
-  --border-alt: #E0DDD8;
-  --cream:   #FAF8F4;
+  --muted:        #9e7f68;
+  --muted-alt:    #6B6B6B;
+  --card:         #fff9f3;
+  --card-alt:     #FFFFFF;
+  --border:       #e8d8c8;
+  --border-alt:   #E0DDD8;
+  --cream:        #FAF8F4;
 
-  /* Slider / dark sections */
-  --dark-bg: #1C1C1E;
+  /* Dark sections */
+  --dark-bg:     #1C1C1E;
   --dark-border: rgba(255, 255, 255, 0.08);
-  --dark-text: rgba(255, 255, 255, 0.55);
+  --dark-text:   rgba(255, 255, 255, 0.55);
 }
 
 /* ── BASE ── */
@@ -64,7 +64,9 @@ h3 { font-size: 1.2rem; font-weight: 600; }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ── NAV ── */
+/* ============================================================
+   NAV
+   ============================================================ */
 nav {
   display: flex;
   justify-content: space-between;
@@ -77,12 +79,19 @@ nav {
   z-index: 100;
 }
 
+/* family.html & sport.html use body max-width; nav needs full-bleed override */
+nav.full-bleed {
+  max-width: 100vw;
+  margin: -32px -24px 32px;
+}
+
 nav .logo {
   font-family: 'Playfair Display', serif;
   font-size: 1.3rem;
   font-weight: 900;
   color: var(--ink);
   letter-spacing: -0.02em;
+  text-decoration: none;
 }
 
 nav ul { list-style: none; display: flex; gap: 2rem; }
@@ -119,13 +128,38 @@ main {
   gap: 2.5rem;
 }
 
-main.narrow {
-  max-width: 640px;
-}
+main.narrow { max-width: 640px; }
 
 /* ── SECTIONS (general) ── */
-section {
-  padding: 5rem 3rem;
+section { padding: 5rem 3rem; }
+
+/* ── PAGE TITLE (contact & gallery) ── */
+.page-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  line-height: 1.1;
+}
+
+.page-title span { color: var(--accent); }
+
+.subtitle {
+  margin-top: 0.6rem;
+  font-size: 0.95rem;
+  color: var(--muted);
+  font-weight: 300;
+  line-height: 1.7;
+}
+
+/* ── FOOTER ── */
+footer {
+  padding: 2rem 3rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--muted);
 }
 
 /* ============================================================
@@ -206,11 +240,7 @@ section {
   animation: fadeUp 0.6s 0.15s ease both;
 }
 
-.essay-card h2 {
-  font-size: 1.6rem;
-  letter-spacing: -0.02em;
-  margin-bottom: 1rem;
-}
+.essay-card h2 { font-size: 1.6rem; letter-spacing: -0.02em; margin-bottom: 1rem; }
 
 .essay-card p {
   font-size: 1rem;
@@ -251,12 +281,7 @@ section {
   transform: translateY(-2px);
 }
 
-.cta-btn svg {
-  width: 18px;
-  height: 18px;
-  transition: transform 0.2s;
-}
-
+.cta-btn svg { width: 18px; height: 18px; transition: transform 0.2s; }
 .cta-btn:hover svg { transform: translateX(3px); }
 
 /* ============================================================
@@ -422,7 +447,6 @@ section {
 }
 
 .about-left { padding-top: 0.5rem; }
-
 .about-left h2 { margin-bottom: 1rem; }
 
 .about-left p {
@@ -462,19 +486,12 @@ section {
 .info-row span:last-child  { color: var(--ink-dark);  font-weight: 500; }
 
 /* Achievement Section */
-.achievement-section {
-  background: var(--ink-dark);
-  color: #fff;
-}
+.achievement-section { background: var(--ink-dark); color: #fff; }
 
 .achievement-section .section-label,
-.achievement-section h2 {
-  color: #fff;
-}
+.achievement-section h2 { color: #fff; }
 
-.achievement-section > .section-label {
-  color: var(--accent);
-}
+.achievement-section > .section-label { color: var(--accent); }
 
 .achievement-grid {
   display: grid;
@@ -492,16 +509,9 @@ section {
   transition: background 0.25s, transform 0.25s;
 }
 
-.ach-card:hover {
-  background: rgba(255,255,255,0.09);
-  transform: translateY(-4px);
-}
+.ach-card:hover { background: rgba(255,255,255,0.09); transform: translateY(-4px); }
 
-.ach-photo {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-}
+.ach-photo { width: 100%; height: 220px; object-fit: cover; }
 
 .ach-body { padding: 1.8rem; }
 
@@ -553,6 +563,13 @@ section {
   position: relative;
 }
 
+.video-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
 .video-placeholder {
   display: flex;
   flex-direction: column;
@@ -572,27 +589,6 @@ section {
 /* ============================================================
    CONTACT PAGE
    ============================================================ */
-
-.page-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(1.8rem, 4vw, 2.6rem);
-  font-weight: 900;
-  letter-spacing: -0.02em;
-  color: var(--ink);
-  line-height: 1.1;
-}
-
-.page-title span { color: var(--accent); }
-
-.subtitle {
-  margin-top: 0.6rem;
-  font-size: 0.95rem;
-  color: var(--muted);
-  font-weight: 300;
-  line-height: 1.7;
-}
-
-/* Card */
 .card {
   background: var(--card);
   border: 1px solid var(--border);
@@ -601,7 +597,6 @@ section {
   animation: fadeUp 0.6s ease both;
 }
 
-/* Form */
 .form-group { margin-bottom: 1.2rem; }
 
 label {
@@ -729,14 +724,454 @@ select { cursor: pointer; padding-right: 36px; }
 .success-msg p { font-size: 0.9rem; color: var(--muted); font-weight: 300; }
 
 /* ============================================================
-   FOOTER
+   FAMILY PAGE
    ============================================================ */
-footer {
-  padding: 2rem 3rem;
-  border-top: 1px solid var(--border);
+
+/* Page uses body max-width: 900px; padding: 32px 24px 60px */
+.family-body {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 32px 24px 60px;
+}
+
+.page-h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 28px;
+  color: var(--ink);
+  border-bottom: 2px solid var(--border);
+  padding-bottom: 10px;
+  display: inline-block;
+}
+
+/* Album Grid */
+.album-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 28px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.12);
+}
+
+.album-cell { height: 200px; overflow: hidden; }
+.album-cell.wide { grid-column: span 2; height: 200px; }
+
+.album-cell img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+.album-cell:hover img { transform: scale(1.04); }
+
+/* Family Banner */
+.family-banner {
   text-align: center;
-  font-size: 0.8rem;
+  margin-bottom: 36px;
+  padding: 22px 32px;
+  border: 3px solid var(--border);
+  border-radius: 14px;
+  background: var(--card);
+  box-shadow: inset 0 0 0 6px var(--bg), 0 0 0 9px var(--border);
+}
+
+.family-banner h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: 0.04em;
+  font-style: italic;
+}
+
+/* Card Rows */
+.card-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+/* Photo Card */
+.photo-card {
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--card);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid var(--border);
+}
+
+.photo-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(44,31,20,0.12);
+}
+
+.photo-card-img {
+  width: 100%;
+  height: 160px;
+  background: linear-gradient(145deg, var(--bg-alt), #e8d0bb);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.photo-card-img img {
+  position: absolute;
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+
+.photo-card-label {
+  padding: 10px 14px 12px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
   color: var(--muted);
+  text-transform: uppercase;
+  background: var(--card);
+  border-top: 1px solid var(--border);
+}
+
+/* Text Card */
+.text-card {
+  border-radius: 14px;
+  background: var(--card);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+  border: 1px solid var(--border);
+  padding: 20px 18px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.text-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(44,31,20,0.12);
+}
+
+.text-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 8px;
+}
+
+.info-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.info-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.82rem;
+  gap: 8px;
+}
+
+.info-list li:last-child { border-bottom: none; }
+.info-list .label { color: var(--muted); font-weight: 400; white-space: nowrap; flex-shrink: 0; }
+.info-list .value { color: var(--ink); font-weight: 500; text-align: right; }
+
+/* ============================================================
+   FAV FOOD PAGE
+   ============================================================ */
+.food-header {
+  text-align: center;
+  padding: 3rem 1rem 1.5rem;
+}
+
+.food-header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.8rem;
+  color: var(--accent);
+  letter-spacing: 2px;
+}
+
+.food-header p {
+  font-size: 1rem;
+  color: var(--muted);
+  margin-top: 6px;
+  font-weight: 300;
+}
+
+.food-section {
+  display: flex;
+  align-items: stretch;
+  gap: 24px;
+  margin-bottom: 40px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  max-width: 860px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.food-photo {
+  flex: 0 0 260px;
+  min-height: 220px;
+  background-color: var(--bg-alt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.food-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.food-essay {
+  flex: 1;
+  padding: 28px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.food-essay h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+.food-essay p {
+  font-size: 0.97rem;
+  line-height: 1.75;
+  color: var(--ink);
+  font-weight: 300;
+}
+
+.food-section.reverse { flex-direction: row-reverse; }
+
+/* ============================================================
+   KOMANDER (GALLERY) PAGE
+   ============================================================ */
+.gallery-main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 3rem 2rem 5rem;
+}
+
+.page-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 0.4rem;
+}
+
+.page-heading span { color: var(--accent); }
+
+.page-subheading {
+  font-size: 0.95rem;
+  color: var(--muted);
+  font-weight: 300;
+  margin-bottom: 2.8rem;
+}
+
+/* Gallery Rows */
+.gallery-row {
+  display: grid;
+  gap: 20px;
+  margin-bottom: 24px;
+  align-items: stretch;
+}
+
+.row-photo-left  { grid-template-columns: 1fr 2fr; }
+.row-photo-right { grid-template-columns: 2fr 1fr; }
+
+/* Photo Block */
+.photo-block {
+  border-radius: 14px;
+  overflow: hidden;
+  background: linear-gradient(145deg, var(--bg-alt), var(--border));
+  min-height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+  border: 1px solid var(--border);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.photo-block:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 22px rgba(0,0,0,0.12);
+}
+
+.photo-block img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+/* Essay Block */
+.essay-block {
+  border-radius: 14px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 28px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.essay-block:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 22px rgba(0,0,0,0.09);
+}
+
+.essay-block h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--ink);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 10px;
+  margin: 0;
+}
+
+.essay-block p {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.92rem;
+  color: var(--muted-alt);
+  line-height: 1.75;
+  font-weight: 300;
+  margin: 0;
+}
+
+/* Komander Video Section */
+.komander-video-section {
+  background: var(--cream);
+  margin-top: 52px;
+  padding: 4rem 3rem;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+}
+
+/* ============================================================
+   SPORT PAGE
+   ============================================================ */
+.sport-body {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 32px 24px 60px;
+}
+
+/* Shared photo/essay boxes */
+.photo-box {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: linear-gradient(145deg, var(--bg-alt), #e8d0bb);
+}
+
+.photo-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.essay-box {
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.essay-box h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.essay-box p {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.75;
+  font-weight: 300;
+}
+
+/* Sport layout rows */
+.sport-row {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 16px;
+  height: 200px;
+}
+
+.sport-row-1 { grid-template-columns: 1fr 2fr; }
+.sport-row-2 { grid-template-columns: 2fr 1fr; }
+.sport-row-4 { grid-template-columns: 1fr 2fr; }
+
+.sport-row-3 {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.sport-row-3 .photo-box {
+  width: 55%;
+  height: 200px;
+}
+
+/* Video box */
+.video-box {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--dark-bg);
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin-bottom: 16px;
+}
+
+.video-box video,
+.video-box iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+  object-fit: cover;
 }
 
 /* ============================================================
@@ -761,6 +1196,8 @@ footer {
     padding: 1.2rem 1.5rem;
   }
   .slide-caption-title { font-size: 1.1rem; }
+
+  .komander-video-section { padding: 2.5rem 1.5rem; }
 }
 
 @media (max-width: 640px) {
@@ -772,7 +1209,39 @@ footer {
   .hero-text { top: 1.2rem; left: 1.4rem; }
 
   .essay-card { padding: 2rem 1.5rem; }
-
   .card { padding: 1.6rem 1.4rem; }
   .row { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+  /* Family */
+  .card-row { grid-template-columns: 1fr 1fr; }
+  .card-row .photo-card:first-child,
+  .card-row .text-card:first-child { grid-column: span 2; }
+  .family-banner h2 { font-size: 1.9rem; }
+  .album-cell { height: 140px; }
+
+  /* Fav Food */
+  .food-section,
+  .food-section.reverse { flex-direction: column; }
+  .food-photo { flex: none; width: 100%; min-height: 200px; }
+  .food-essay { padding: 1.6rem 1.4rem; }
+
+  /* Sport */
+  .sport-row-1,
+  .sport-row-2,
+  .sport-row-4 { grid-template-columns: 1fr; height: auto; }
+  .sport-row-1 .photo-box,
+  .sport-row-2 .photo-box,
+  .sport-row-4 .photo-box { height: 180px; }
+  .sport-row-3 .photo-box { width: 85%; }
+}
+
+@media (max-width: 580px) {
+  /* Komander gallery */
+  .row-photo-left,
+  .row-photo-right { grid-template-columns: 1fr; }
+  .row-photo-right .essay-block { order: 2; }
+  .row-photo-right .photo-block { order: 1; }
+  .photo-block { min-height: 240px; }
 }
