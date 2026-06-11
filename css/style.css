@@ -561,22 +561,6 @@ section {
   color: rgba(255,255,255,0.4);
 }
 
-.play-btn {
-  width: 64px; height: 64px;
-  border-radius: 50%;
-  background: var(--accent);
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.2s, background 0.2s;
-}
-
-.play-btn:hover { transform: scale(1.08); background: var(--accent-hover); }
-
-.play-btn svg { fill: #fff; width: 22px; height: 22px; margin-left: 3px; }
-
 .video-placeholder p {
   font-size: 0.82rem;
   letter-spacing: 0.1em;
