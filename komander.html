@@ -289,7 +289,7 @@
       font-family: 'DM Sans', sans-serif;
       font-weight: 500;
       font-size: 0.85rem;
-      cursor: pointer;
+      cursor: default;
       letter-spacing: 0.04em;
       transition: background 0.2s, border-color 0.2s;
     }
@@ -358,57 +358,53 @@
 
     <!-- ROW 1: Photo left | Essay right -->
     <div class="gallery-row row-photo-left">
-      <div class="photo-block" onclick="triggerUpload('photo1')">
-        <img id="img-photo1" src="" alt=""/>
+        <img src="picture/kom1.jpeg" alt="Photo 1">
         <div class="photo-placeholder"></div>
       </div>
       <div class="essay-block">
-        <h2>Title One</h2>
-        <p>Write your story or description here. This is a great place to share the memory, context, or meaning behind the photo on the left. Replace this placeholder text with your own words.</p>
+        <h2>TTS Show!</h2>
+        <p>When we're in our second semester, our curriculum organized a program called <i>Tempur Tanpa Senjata</i>, TTS. We trained from week 3 until week 10
+          to perfect our performance. it was a memorable moment</p>
       </div>
     </div>
 
     <!-- ROW 2: Essay left | Photo right -->
     <div class="gallery-row row-photo-right">
       <div class="essay-block">
-        <h2>Title Two</h2>
-        <p>Write your story or description here. This section sits beside the photo on the right. Share what makes this moment special — the place, the people, or the feeling it brings back.</p>
+        <h2>Done UKP!</h2>
+        <p>Our batch have undergone foot drill training for two semester. This photo was taken after we have completed our last test
+          which <i>Ujian Kenaikan Pangkat</i>, UKP. Our batch undergone fitness test, manifesto and lastly foot drill for three days.
+          It was tiring but the thrill is unforgettable.</p>
       </div>
-      <div class="photo-block" onclick="triggerUpload('photo2')">
-        <img id="img-photo2" src="" alt=""/>
+        <img src="picture/kom2.jpeg" alt="Photo 2">
         <div class="photo-placeholder"></div>
       </div>
     </div>
 
     <!-- ROW 3: Small photo left | Wide essay right -->
     <div class="gallery-row row-photo-left">
-      <div class="photo-block" onclick="triggerUpload('photo3')">
-        <img id="img-photo3" src="" alt=""/>
+        <img src="picture/kom3.jpeg" alt="Photo 3">
         <div class="photo-placeholder"></div>
       </div>
       <div class="essay-block">
-        <h2>Title Three</h2>
-        <p>Write your story or description here. The smaller photo to the left works well as a portrait or a close-up detail, while this wider text area gives you room to tell a longer story or write a full caption.</p>
+        <h2>Supreme Council</h2>
+        <p>This our line of council which is <i>Majlis Perwakilan Komander Kesatria</i>, MPKK. I as the head of the council have
+          responsiblity over the unit.</p>
       </div>
     </div>
 
     <!-- ROW 4: Wide essay left | Small photo right -->
     <div class="gallery-row row-photo-right">
       <div class="essay-block">
-        <h2>Title Four</h2>
-        <p>Write your story or description here. This final row mirrors the one above — a wide essay on the left with a portrait-style photo on the right. Use it to close your gallery with a meaningful caption or reflection.</p>
+        <h2>Happy Eid!</h2>
+        <p>This photo was taken when we had eid feast at BK1. Eventhough some problem happened, it was solved with good communication.
+        This event open my eyes on how to manage a small event.</p>
       </div>
-      <div class="photo-block" onclick="triggerUpload('photo4')">
-        <img id="img-photo4" src="" alt=""/>
+        <img src="picture/kom4.jpeg" alt="Photo 4">
         <div class="photo-placeholder"></div>
       </div>
     </div>
 
-    <!-- Hidden file inputs -->
-    <input type="file" id="file-photo1" accept="image/*" onchange="loadImage('photo1')">
-    <input type="file" id="file-photo2" accept="image/*" onchange="loadImage('photo2')">
-    <input type="file" id="file-photo3" accept="image/*" onchange="loadImage('photo3')">
-    <input type="file" id="file-photo4" accept="image/*" onchange="loadImage('photo4')">
 
     <!-- VIDEO SECTION -->
     <div class="video-section">
@@ -417,7 +413,7 @@
         <p>A special moment captured on film.</p>
         <div class="video-frame">
           <div class="video-placeholder" id="video-placeholder">
-            <p>Video coming soon</p>
+            <p><iframe width="560" height="315" src="https://www.youtube.com/embed/NBGsf90Z5RU?si=EesfBVVWhgQBzq61" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
           </div>
           <div id="video-frame-wrapper" style="display:none; width:100%; height:100%;"></div>
         </div>
@@ -431,21 +427,6 @@
   <footer>
     <p>&copy; 2026 Irfan. All rights reserved.</p>
   </footer>
-
-  <script>
-function triggerUpload(id) {
-      document.getElementById('file-' + id).click();
-    }
-
-    function loadImage(id) {
-      const file = document.getElementById('file-' + id).files[0];
-      if (!file) return;
-      const url = URL.createObjectURL(file);
-      const img = document.getElementById('img-' + id);
-      img.src = url;
-      img.closest('.photo-block').classList.add('has-image');
-    }
-  </script>
 
 </body>
 </html>
