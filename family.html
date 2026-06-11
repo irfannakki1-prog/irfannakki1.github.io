@@ -7,364 +7,116 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600&display=swap" rel="stylesheet"/>
-
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg:      #fdf6ee;
-      --bg-alt:  #f9ede0;
-      --ink:     #2c1f14;
-      --accent:  #b85c2a;
-      --muted:   #9e7f68;
-      --card:    #fff9f3;
-      --border:  #e8d8c8;
-    }
-
-    body {
-      font-family: 'DM Sans', 'Inter', sans-serif;
-      background: linear-gradient(160deg, var(--bg) 0%, var(--bg-alt) 100%);
-      color: var(--ink);
-      padding: 32px 24px 60px;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    /* NAV */
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.4rem 3rem;
-      border-bottom: 1px solid var(--border);
-      background: var(--bg);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      max-width: 100vw;
-      margin: -32px -24px 32px;
-    }
-
-    nav .logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.3rem;
-      font-weight: 900;
-      color: var(--ink);
-      letter-spacing: -0.02em;
-      text-decoration: none;
-    }
-
-    nav ul { list-style: none; display: flex; gap: 2rem; }
-
-    nav ul li a {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: var(--muted);
-      letter-spacing: 0.03em;
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    nav ul li a:hover,
-    nav ul li a.active { color: var(--accent); }
-
-    h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 28px;
-      color: var(--ink);
-      border-bottom: 2px solid var(--border);
-      padding-bottom: 10px;
-      display: inline-block;
-    }
-
-    /* ALBUM GRID */
-    .album-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      border-radius: 14px;
-      overflow: hidden;
-      margin-bottom: 28px;
-      box-shadow: 0 4px 18px rgba(0,0,0,0.12);
-    }
-
-    .album-grid .album-cell {
-      height: 200px;
-      overflow: hidden;
-    }
-
-    .album-grid .album-cell.wide {
-      grid-column: span 2;
-      height: 200px;
-    }
-
-    .album-grid .album-cell img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.35s ease;
-    }
-
-    .album-grid .album-cell:hover img {
-      transform: scale(1.04);
-    }
-
-    /* MY FAMILY BANNER */
-    .family-banner {
-      text-align: center;
-      margin-bottom: 36px;
-      padding: 22px 32px;
-      border: 3px solid var(--border);
-      border-radius: 14px;
-      background: var(--card);
-      box-shadow: inset 0 0 0 6px var(--bg), 0 0 0 9px var(--border);
-      position: relative;
-    }
-
-    .family-banner h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.6rem;
-      font-weight: 700;
-      color: var(--ink);
-      letter-spacing: 0.04em;
-      font-style: italic;
-    }
-
-    /* GRID ROWS */
-    .card-row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-      margin-bottom: 28px;
-    }
-
-    /* PHOTO CARD */
-    .card {
-      border-radius: 14px;
-      overflow: hidden;
-      background: var(--card);
-      box-shadow: 0 2px 10px rgba(0,0,0,0.07);
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-      position: relative;
-      border: 1px solid var(--border);
-    }
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 6px 20px rgba(44,31,20,0.12);
-    }
-
-    .card-photo {
-      width: 100%;
-      height: 160px;
-      background: linear-gradient(145deg, var(--bg-alt), #e8d0bb);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--muted);
-      font-size: 0.9rem;
-      font-style: italic;
-      position: relative;
-    }
-
-    .card-photo img {
-      position: absolute;
-      width: 100%; height: 100%;
-      object-fit: cover;
-    }
-
-    .card-label {
-      padding: 10px 14px 12px;
-      font-size: 0.82rem;
-      font-weight: 500;
-      letter-spacing: 0.04em;
-      color: var(--muted);
-      text-transform: uppercase;
-      background: var(--card);
-      border-top: 1px solid var(--border);
-    }
-
-    /* TEXT CARD */
-    .text-card {
-      border-radius: 14px;
-      background: var(--card);
-      box-shadow: 0 2px 10px rgba(0,0,0,0.07);
-      border: 1px solid var(--border);
-      padding: 20px 18px;
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .text-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 6px 20px rgba(44,31,20,0.12);
-    }
-
-    .text-card h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--ink);
-      margin-bottom: 12px;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 8px;
-    }
-
-    .info-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-    }
-
-    .info-list li {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      padding: 6px 0;
-      border-bottom: 1px solid var(--border);
-      font-size: 0.82rem;
-      gap: 8px;
-    }
-
-    .info-list li:last-child { border-bottom: none; }
-
-    .info-list .label {
-      color: var(--muted);
-      font-weight: 400;
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-
-    .info-list .value {
-      color: var(--ink);
-      font-weight: 500;
-      text-align: right;
-    }
-
-    input[type="file"] { display: none; }
-
-    @media (max-width: 600px) {
-      nav { padding: 1rem 1.2rem; }
-      nav ul { gap: 1rem; }
-      .card-row { grid-template-columns: 1fr 1fr; }
-      .card-row .card:first-child,
-      .card-row .text-card:first-child { grid-column: span 2; }
-      .family-banner h2 { font-size: 1.9rem; }
-      .album-grid .album-cell { height: 140px; }
-    }
-  </style>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
-  <nav>
+  <nav class="full-bleed">
     <a class="logo" href="index.html">Irfan.</a>
     <ul>
       <li><a href="index.html">Home</a></li>
       <li><a href="aboutme.html">About me</a></li>
       <li><a href="family.html" class="active">My Family</a></li>
-      <li><a href="komander.html" class="active">Komander</a></li>
+      <li><a href="komander.html">Komander</a></li>
       <li><a href="sport.html">Sport</a></li>
       <li><a href="favfood.html">Fav Food</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
   </nav>
 
-  <h1>Family</h1>
+  <div class="family-body">
 
-  <!-- PHOTO ALBUM GRID -->
-  <div class="album-grid">
-    <div class="album-cell">
-      <img src="picture/family9.jpeg" alt="Family Photo 1">
-    </div>
-    <div class="album-cell">
-      <img src="picture/family1.jpeg" alt="Family Photo 2">
-    </div>
-    <div class="album-cell">
-      <img src="picture/family2.jpeg" alt="Family Photo 3">
-    </div>
-    <div class="album-cell">
-      <img src="picture/family6.jpeg" alt="Family Photo 4">
-    </div>
-    <div class="album-cell wide">
-      <img src="picture/family5.jpeg" alt="Family Photo 5">
-    </div>
-  </div>
+    <h1 class="page-h1">Family</h1>
 
-  <!-- MY FAMILY BANNER -->
-  <div class="family-banner">
-    <h2>My Family</h2>
-  </div>
-
-  <!-- PARENTS ROW -->
-  <div class="card-row">
-    <div class="card">
-      <div class="card-photo">
-        <img src="picture/family4.jpeg" alt="Parents Photo">
+    <!-- PHOTO ALBUM GRID -->
+    <div class="album-grid">
+      <div class="album-cell">
+        <img src="picture/family9.jpeg" alt="Family Photo 1">
       </div>
-      <div class="card-label">Parents Photo</div>
-    </div>
-
-    <div class="text-card">
-      <h3>FATHER</h3>
-      <ul class="info-list">
-        <li><span class="label">Full Name</span><span class="value">HASLAN BIN TAMJEHI</span></li>
-        <li><span class="label">Date of Birth</span><span class="value">10 / 11 / 1976</span></li>
-        <li><span class="label">Hometown</span><span class="value">TAWAU, SABAH</span></li>
-        <li><span class="label">Profession</span><span class="value">LIBRARIAN</span></li>
-        <li><span class="label">Hobby</span><span class="value">READING AND DRAWING</span></li>
-      </ul>
-    </div>
-
-    <div class="text-card">
-      <h3>MOTHER</h3>
-      <ul class="info-list">
-        <li><span class="label">Full Name</span><span class="value">LATIFAH BINTI RAMLI</span></li>
-        <li><span class="label">Date of Birth</span><span class="value">21 / 11 / 1976</span></li>
-        <li><span class="label">Hometown</span><span class="value">PERMATANG PAUH, PULAU PINANG</span></li>
-        <li><span class="label">Profession</span><span class="value">LIBRARIAN</span></li>
-        <li><span class="label">Hobby</span><span class="value">WATCH TV</span></li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- SIBLINGS ROW -->
-  <div class="card-row">
-    <div class="card">
-      <div class="card-photo">
-        <img src="picture/family8.jpeg" alt="Family Photo">
+      <div class="album-cell">
+        <img src="picture/family1.jpeg" alt="Family Photo 2">
       </div>
-      <div class="card-label">Family Photo</div>
+      <div class="album-cell">
+        <img src="picture/family2.jpeg" alt="Family Photo 3">
+      </div>
+      <div class="album-cell">
+        <img src="picture/family6.jpeg" alt="Family Photo 4">
+      </div>
+      <div class="album-cell wide">
+        <img src="picture/family5.jpeg" alt="Family Photo 5">
+      </div>
     </div>
 
-    <div class="text-card">
-      <h3>OLDER BROTHER</h3>
-      <ul class="info-list">
-        <li><span class="label">Full Name</span><span class="value">MUHD IMTIYAZ BIN HASLAN</span></li>
-        <li><span class="label">Date of Birth</span><span class="value">29 / 9 / 2004</span></li>
-        <li><span class="label">Hometown</span><span class="value">GOMBAK, SELANGOR</span></li>
-        <li><span class="label">Education</span><span class="value">MA'AHAD AN-NOER, JANDA BAIK</span></li>
-        <li><span class="label">Hobby</span><span class="value">WATCH TV</span></li>
-      </ul>
+    <!-- MY FAMILY BANNER -->
+    <div class="family-banner">
+      <h2>My Family</h2>
     </div>
 
-    <div class="text-card">
-      <h3>LITTLE BROTHER</h3>
-      <ul class="info-list">
-        <li><span class="label">Full Name</span><span class="value">MUHD IKHWAN BIN HASLAN</span></li>
-        <li><span class="label">Date of Birth</span><span class="value">20 / 9 / 2010</span></li>
-        <li><span class="label">Hometown</span><span class="value">GOMBAK, SELANGOR</span></li>
-        <li><span class="label">Education</span><span class="value">SMK SUNGAI PUSU</span></li>
-        <li><span class="label">Hobby</span><span class="value">PLAYING GAMES</span></li>
-      </ul>
+    <!-- PARENTS ROW -->
+    <div class="card-row">
+      <div class="photo-card">
+        <div class="photo-card-img">
+          <img src="picture/family4.jpeg" alt="Parents Photo">
+        </div>
+        <div class="photo-card-label">Parents Photo</div>
+      </div>
+
+      <div class="text-card">
+        <h3>FATHER</h3>
+        <ul class="info-list">
+          <li><span class="label">Full Name</span><span class="value">HASLAN BIN TAMJEHI</span></li>
+          <li><span class="label">Date of Birth</span><span class="value">10 / 11 / 1976</span></li>
+          <li><span class="label">Hometown</span><span class="value">TAWAU, SABAH</span></li>
+          <li><span class="label">Profession</span><span class="value">LIBRARIAN</span></li>
+          <li><span class="label">Hobby</span><span class="value">READING AND DRAWING</span></li>
+        </ul>
+      </div>
+
+      <div class="text-card">
+        <h3>MOTHER</h3>
+        <ul class="info-list">
+          <li><span class="label">Full Name</span><span class="value">LATIFAH BINTI RAMLI</span></li>
+          <li><span class="label">Date of Birth</span><span class="value">21 / 11 / 1976</span></li>
+          <li><span class="label">Hometown</span><span class="value">PERMATANG PAUH, PULAU PINANG</span></li>
+          <li><span class="label">Profession</span><span class="value">LIBRARIAN</span></li>
+          <li><span class="label">Hobby</span><span class="value">WATCH TV</span></li>
+        </ul>
+      </div>
     </div>
-  </div>
+
+    <!-- SIBLINGS ROW -->
+    <div class="card-row">
+      <div class="photo-card">
+        <div class="photo-card-img">
+          <img src="picture/family8.jpeg" alt="Family Photo">
+        </div>
+        <div class="photo-card-label">Family Photo</div>
+      </div>
+
+      <div class="text-card">
+        <h3>OLDER BROTHER</h3>
+        <ul class="info-list">
+          <li><span class="label">Full Name</span><span class="value">MUHD IMTIYAZ BIN HASLAN</span></li>
+          <li><span class="label">Date of Birth</span><span class="value">29 / 9 / 2004</span></li>
+          <li><span class="label">Hometown</span><span class="value">GOMBAK, SELANGOR</span></li>
+          <li><span class="label">Education</span><span class="value">MA'AHAD AN-NOER, JANDA BAIK</span></li>
+          <li><span class="label">Hobby</span><span class="value">WATCH TV</span></li>
+        </ul>
+      </div>
+
+      <div class="text-card">
+        <h3>LITTLE BROTHER</h3>
+        <ul class="info-list">
+          <li><span class="label">Full Name</span><span class="value">MUHD IKHWAN BIN HASLAN</span></li>
+          <li><span class="label">Date of Birth</span><span class="value">20 / 9 / 2010</span></li>
+          <li><span class="label">Hometown</span><span class="value">GOMBAK, SELANGOR</span></li>
+          <li><span class="label">Education</span><span class="value">SMK SUNGAI PUSU</span></li>
+          <li><span class="label">Hobby</span><span class="value">PLAYING GAMES</span></li>
+        </ul>
+      </div>
+    </div>
+
+  </div><!-- /.family-body -->
 
 </body>
 </html>
