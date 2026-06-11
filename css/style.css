@@ -542,11 +542,11 @@ footer {
   text-align: center;
 }
 
-.video-inner h2 { margin-bottom: 0.5rem; }
+.video-inner h2 { font-size: 2rem; margin-bottom: 0.5rem; }
 
 .video-inner > p {
   color: var(--muted-alt);
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.5rem;
   font-size: 0.95rem;
 }
 
@@ -557,23 +557,26 @@ footer {
   overflow: hidden;
   border: 1px solid var(--border-alt);
   background: var(--ink-dark);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   position: relative;
 }
 
 .video-frame iframe {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   border: none;
   display: block;
 }
 
-.video-placeholder {
+/* Placeholder (aboutme page only) */
+.video-frame .video-placeholder {
+  position: absolute;
+  inset: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 1rem;
   color: rgba(255,255,255,0.4);
 }
@@ -1026,12 +1029,11 @@ select { cursor: pointer; padding-right: 36px; }
 }
 
 .photo-block img {
-  position: absolute;
-  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 14px;
+  display: block;
 }
 
 /* Essay Block */
