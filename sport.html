@@ -7,243 +7,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600&display=swap" rel="stylesheet"/>
-
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg:      #fdf6ee;
-      --bg-alt:  #f9ede0;
-      --ink:     #2c1f14;
-      --accent:  #b85c2a;
-      --muted:   #9e7f68;
-      --card:    #fff9f3;
-      --border:  #e8d8c8;
-    }
-
-    body {
-      font-family: 'DM Sans', 'Inter', sans-serif;
-      background: linear-gradient(160deg, var(--bg) 0%, var(--bg-alt) 100%);
-      color: var(--ink);
-      padding: 32px 24px 60px;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    /* NAV */
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.4rem 3rem;
-      border-bottom: 1px solid var(--border);
-      background: var(--bg);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      max-width: 100vw;
-      margin: -32px -24px 32px;
-    }
-
-    nav .logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.3rem;
-      font-weight: 900;
-      color: var(--ink);
-      letter-spacing: -0.02em;
-      text-decoration: none;
-    }
-
-    nav ul { list-style: none; display: flex; gap: 2rem; }
-
-    nav ul li a {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: var(--muted);
-      letter-spacing: 0.03em;
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    nav ul li a:hover,
-    nav ul li a.active { color: var(--accent); }
-
-    /* PAGE TITLE */
-    h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 28px;
-      color: var(--ink);
-      border-bottom: 2px solid var(--border);
-      padding-bottom: 10px;
-      display: inline-block;
-    }
-
-    /* SHARED CARD STYLES */
-    .photo-box {
-      border-radius: 14px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      background: linear-gradient(145deg, var(--bg-alt), #e8d0bb);
-    }
-
-    .photo-box img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .photo-placeholder {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--muted);
-      font-size: 0.85rem;
-      font-style: italic;
-      min-height: inherit;
-    }
-
-    .essay-box {
-      border-radius: 14px;
-      border: 1px solid var(--border);
-      background: var(--card);
-      padding: 24px 28px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .essay-box h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--ink);
-      margin-bottom: 10px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .essay-box p {
-      font-size: 0.9rem;
-      color: var(--muted);
-      line-height: 1.75;
-      font-weight: 300;
-    }
-
-    /* ── ROW 1: Photo left, Essay right ── */
-    .row-1 {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 16px;
-      margin-bottom: 16px;
-      height: 200px;
-    }
-
-    /* ── ROW 2: Essay left, Photo right ── */
-    .row-2 {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 16px;
-      margin-bottom: 16px;
-      height: 200px;
-    }
-
-    /* ── ROW 3: Photo centered ── */
-    .row-3 {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 16px;
-    }
-
-    .row-3 .photo-box {
-      width: 55%;
-      height: 200px;
-    }
-
-    /* ── ROW 4: Photo left, Essay right ── */
-    .row-4 {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 16px;
-      margin-bottom: 16px;
-      height: 200px;
-    }
-
-    /* ── ROW 5: Video full width ── */
-    .row-5 {
-      margin-bottom: 16px;
-    }
-
-    .video-box {
-      border-radius: 14px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      background: #1c1c1e;
-      width: 100%;
-      aspect-ratio: 16 / 9;
-    }
-
-    .video-box iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-      display: block;
-    }
-
-    /* video placeholder if no embed yet */
-    .video-placeholder {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      color: rgba(255,255,255,0.35);
-      font-size: 0.85rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      min-height: 240px;
-    }
-
-    .video-icon {
-      width: 52px; height: 52px;
-      border-radius: 50%;
-      background: var(--accent);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .video-icon svg { fill: #fff; width: 20px; height: 20px; margin-left: 3px; }
-
-    /* RESPONSIVE */
-    @media (max-width: 600px) {
-      nav { padding: 1rem 1.2rem; }
-      nav ul { gap: 1rem; }
-
-      .row-1, .row-2, .row-4 {
-        grid-template-columns: 1fr;
-        height: auto;
-      }
-
-      .row-1 .photo-box,
-      .row-2 .photo-box,
-      .row-4 .photo-box { height: 180px; }
-
-      .row-3 .photo-box { width: 85%; }
-    }
-  </style>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
-  <nav>
+  <nav class="full-bleed">
     <a class="logo" href="index.html">Irfan.</a>
     <ul>
       <li><a href="index.html">Home</a></li>
@@ -256,71 +24,61 @@
     </ul>
   </nav>
 
-  <h1>Sport</h1>
+  <div class="sport-body">
 
-  <!-- ROW 1: Photo 1 (left) + Essay (right) -->
-  <div class="row-1">
-    <div class="photo-box">
-      <img src="picture/sport1.jpeg" alt="Sport Photo 1">
-      <div class="photo-placeholder">Photo 1</div>
-      <!-- <img src="picture/sport1.jpeg" alt="Sport Photo 1"> -->
-    </div>
-    <div class="essay-box">
-      <h2>My Sport Journey</h2>
-      <p>This my faculty football team and i play striker. My team manage to fight through the quarter final and we were
-        defeated by our faculty Team A.</p>
-    </div>
-  </div>
+    <h1 class="page-h1">Sport</h1>
 
-  <!-- ROW 2: Essay (left) + Photo 2 (right) -->
-  <div class="row-2">
-    <div class="essay-box">
-      <h2>Training & Dedication</h2>
-      <p>During KKEC our team sent me as cyclist. we lost the competition but it was fine since it was very hard fight.
-      I gained some personal experience and I managed to get make friends with other contigent.</p>
-    </div>
-    <div class="photo-box">
-      <img src="picture/sport2.jpeg" alt="Sport Photo 2">
-      <div class="photo-placeholder">Photo 2</div>
-      <!-- <img src="picture/sport2.jpeg" alt="Sport Photo 2"> -->
-    </div>
-  </div>
-
-  <!-- ROW 3: Photo 3 (centered) -->
-  <div class="row-3">
-    <div class="photo-box">
-      <img src="picture/sport3.jpeg" alt="Sport Photo 3">
-      <div class="photo-placeholder">Photo 3</div>
-      <!-- <img src="picture/sport3.jpeg" alt="Sport Photo 3"> -->
-    </div>
-  </div>
-
-  <!-- ROW 4: Photo 4 (left) + Essay (right) -->
-  <div class="row-4">
-    <div class="photo-box">
-      <img src="picture/sport4.jpeg" alt="Sport Photo 4">
-      <div class="photo-placeholder">Photo 4</div>
-      <!-- <img src="picture/sport4.jpeg" alt="Sport Photo 4"> -->
-    </div>
-    <div class="essay-box">
-      <h2>WIN!</h2>
-      <p>In this competition we managed to get fifth place from thirteenth place. We managed to collect three medal
-      which are one silver and two bronze. It was very exciting experience</p>
-    </div>
-  </div>
-
-  <!-- ROW 5: Video (full width) -->
- <div class="row-5">
-  <div class="video-box">
-    <video controls width="100%" height="100%" style="display:block; object-fit:cover;">
-      <source src="picture/vid1.mp4" type="video/mp4">
-    </video>
-  </div>
-</div>
-        Video
+    <!-- ROW 1: Photo left + Essay right -->
+    <div class="sport-row sport-row-1">
+      <div class="photo-box">
+        <img src="picture/sport1.jpeg" alt="Sport Photo 1">
+      </div>
+      <div class="essay-box">
+        <h2>My Sport Journey</h2>
+        <p>This is my faculty football team and I play striker. My team managed to fight through the quarter final and we were
+          defeated by our faculty Team A.</p>
       </div>
     </div>
-  </div>
+
+    <!-- ROW 2: Essay left + Photo right -->
+    <div class="sport-row sport-row-2">
+      <div class="essay-box">
+        <h2>Training &amp; Dedication</h2>
+        <p>During KKEC our team sent me as cyclist. We lost the competition but it was fine since it was a very hard fight.
+          I gained personal experience and managed to make friends with other contingents.</p>
+      </div>
+      <div class="photo-box">
+        <img src="picture/sport2.jpeg" alt="Sport Photo 2">
+      </div>
+    </div>
+
+    <!-- ROW 3: Photo centred -->
+    <div class="sport-row-3">
+      <div class="photo-box">
+        <img src="picture/sport3.jpeg" alt="Sport Photo 3">
+      </div>
+    </div>
+
+    <!-- ROW 4: Photo left + Essay right -->
+    <div class="sport-row sport-row-4">
+      <div class="photo-box">
+        <img src="picture/sport4.jpeg" alt="Sport Photo 4">
+      </div>
+      <div class="essay-box">
+        <h2>WIN!</h2>
+        <p>In this competition we managed to get fifth place from thirteenth place. We collected three medals —
+          one silver and two bronze. It was a very exciting experience.</p>
+      </div>
+    </div>
+
+    <!-- ROW 5: Video full width -->
+    <div class="video-box">
+      <video controls>
+        <source src="picture/vid1.mp4" type="video/mp4">
+      </video>
+    </div>
+
+  </div><!-- /.sport-body -->
 
 </body>
 </html>
